@@ -502,7 +502,28 @@ h1 {
 }
 
 .mini-calendar {
+  position: relative;
+  overflow: hidden;
   padding: 24px;
+  border-color: rgba(93, 128, 210, 0.24);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(244, 199, 106, 0.48), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(123, 97, 255, 0.22), transparent 28%),
+    linear-gradient(145deg, rgba(237, 249, 245, 0.96), rgba(239, 246, 255, 0.94) 48%, rgba(255, 248, 231, 0.9));
+}
+
+.mini-calendar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(31, 157, 138, 0.11), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 38%);
+}
+
+.mini-calendar > * {
+  position: relative;
 }
 
 .mini-calendar h3,
@@ -515,7 +536,8 @@ h1 {
 
 .mini-calendar p {
   margin: 0 0 24px;
-  color: #738396;
+  color: #4f78a6;
+  font-weight: 700;
 }
 
 .week-row,
@@ -526,8 +548,9 @@ h1 {
 }
 
 .week-row span {
-  color: #9ba7b3;
+  color: #6685a1;
   font-size: 0.8rem;
+  font-weight: 800;
   text-align: center;
 }
 
@@ -542,9 +565,10 @@ h1 {
   place-items: center;
   border: 0;
   border-radius: 9px;
-  color: #4d5c69;
-  background: transparent;
+  color: #315876;
+  background: rgba(255, 255, 255, 0.28);
   font-size: 0.84rem;
+  font-weight: 700;
   transition:
     background 150ms ease,
     color 150ms ease,
@@ -554,7 +578,7 @@ h1 {
 
 .mini-days button:hover {
   color: #172631;
-  background: #edf6f4;
+  background: rgba(255, 255, 255, 0.72);
   transform: translateY(-1px);
 }
 
@@ -568,23 +592,75 @@ h1 {
 .mini-days button.has-tasks::after {
   content: "";
   position: absolute;
-  bottom: 4px;
+  bottom: 5px;
   left: 50%;
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
   background: #1f9d8a;
+  box-shadow: 0 0 0 3px rgba(31, 157, 138, 0.12);
   transform: translateX(-50%);
 }
 
 .mini-days button.active {
   color: #ffffff;
-  background: #1f9d8a;
-  box-shadow: 0 8px 16px rgba(31, 157, 138, 0.24);
+  background:
+    linear-gradient(145deg, rgba(31, 157, 138, 0.96), rgba(46, 133, 211, 0.9));
+  box-shadow: 0 12px 24px rgba(31, 157, 138, 0.28);
 }
 
 .mini-days button.active::after {
   background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.24);
+}
+
+.mini-days button.coral.has-tasks::after {
+  background: #e96c5a;
+  box-shadow: 0 0 0 3px rgba(233, 108, 90, 0.16);
+}
+
+.mini-days button.violet.has-tasks::after {
+  background: #7b61ff;
+  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.16);
+}
+
+.mini-days button.blue.has-tasks::after {
+  background: #2e85d3;
+  box-shadow: 0 0 0 3px rgba(46, 133, 211, 0.16);
+}
+
+.mini-days button.green.has-tasks::after {
+  background: #1f9d8a;
+  box-shadow: 0 0 0 3px rgba(31, 157, 138, 0.16);
+}
+
+.mini-days button.amber.has-tasks::after {
+  background: #d89824;
+  box-shadow: 0 0 0 3px rgba(216, 152, 36, 0.16);
+}
+
+.mini-days button.coral.active {
+  background: linear-gradient(145deg, #e96c5a, #f4a261);
+  box-shadow: 0 12px 24px rgba(233, 108, 90, 0.26);
+}
+
+.mini-days button.violet.active {
+  background: linear-gradient(145deg, #7b61ff, #2e85d3);
+  box-shadow: 0 12px 24px rgba(123, 97, 255, 0.25);
+}
+
+.mini-days button.blue.active {
+  background: linear-gradient(145deg, #2e85d3, #1f9d8a);
+  box-shadow: 0 12px 24px rgba(46, 133, 211, 0.25);
+}
+
+.mini-days button.green.active {
+  background: linear-gradient(145deg, #1f9d8a, #51c477);
+}
+
+.mini-days button.amber.active {
+  background: linear-gradient(145deg, #d89824, #f4c76a);
+  box-shadow: 0 12px 24px rgba(216, 152, 36, 0.25);
 }
 
 .progress-panel {

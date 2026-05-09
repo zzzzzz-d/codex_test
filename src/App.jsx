@@ -549,10 +549,14 @@ function SettingsPage() {
 }
 
 function MiniCalendar({ selectedDate, onSelectDate, tasks }) {
-  const taskDates = useMemo(
-    () => new Set(tasks.map((task) => task.date)),
-    [tasks],
-  );
+  const taskDateMeta = useMemo(() => {
+    return tasks.reduce((dates, task) => {
+      if (!dates.has(task.date)) {
+        dates.set(task.date, task.accent);
+      }
+      return dates;
+    }, new Map());
+  }, [tasks]);
 
   return (
     <div className="mini-calendar">
@@ -567,12 +571,13 @@ function MiniCalendar({ selectedDate, onSelectDate, tasks }) {
         {Array.from({ length: 28 }, (_, index) => index + 1).map((day) => {
           const date = dateFromMayDay(day);
           const isSelected = selectedDate === date;
-          const hasTasks = taskDates.has(date);
+          const taskAccent = taskDateMeta.get(date);
+          const hasTasks = Boolean(taskAccent);
           return (
             <button
               key={day}
               type="button"
-              className={`${isSelected ? "active" : ""} ${hasTasks ? "has-tasks" : ""}`}
+              className={`${isSelected ? "active" : ""} ${hasTasks ? "has-tasks" : ""} ${taskAccent ?? ""}`}
               onClick={() => onSelectDate(date)}
               aria-pressed={isSelected}
               aria-label={`选择5月${day}日${hasTasks ? "，有任务" : ""}`}
